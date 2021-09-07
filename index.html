@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инструкция - Запись с веб-камеры</title>
+    <link rel="icon" type="image/png" href="https://xn--3-gtb4aa4c.xn--p1ai/images/sampledata/logoadm.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        ul, ol {
+            list-style: none;
+        }
+        :focus, :active, a:focus, a:active {
+            outline: none;
+        }
+        a, a:visited {
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        a {
+            color: rgba(255,255,255,0.44);
+        }
+        html, body {
+            height: 100%;
+        }
+        body {
+            font-size: 16px;
+            min-width: 320px;
+            position: relative;
+            overflow-x: hidden;
+            background: #2b3e50;
+            color: #fff;
+        }
+        .wrapper {
+            width: 100%;
+            min-height: 100%;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        h1, .video {
+            margin-bottom: 50px;
+        }
+        .video__link {
+            display: flex;
+            justify-content: space-between;
+        }
+        .video__link a {
+            border-bottom: 1px dashed;
+        }
+        .video__link a:hover {
+            border: none;
+            text-decoration: none;
+        }
+        .video__listing, .video__download {
+            display: none;
+            margin: 20px 0;
+        }
+        .video__download {
+            text-align: right;
+        }
+        .active {
+            display: block;
+        }
+        .item {
+            margin-bottom: 20px;
+        }
+        .item a {
+            font-size: 18px;
+        }
+        .item span {
+            color: #ff4003;
+            letter-spacing: 0.07em;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Инструкция - Запись с веб-камеры</h1>
+        <div class="video">
+            <img src="https://xn--3-gtb4aa4c.xn--p1ai/images/sampledata/bgvideo.jpg" alt="1">
+            <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/af1VflMXKvI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+            <div class="video__link">
+                <a class="listing" href="#">Оглавление</a>
+            </div>
+            <div class="video__listing">
+                <ul>
+                    <li><a href="https://www.youtube.com/embed/af1VflMXKvI?start=12">1. Отключение спящего режима Windows</a></li>
+                    <li><a href="https://www.youtube.com/embed/af1VflMXKvI?start=81">2. Установка программы</a></li>
+                    <li><a href="https://www.youtube.com/embed/af1VflMXKvI?start=836">3. Настройка программы</a></li>
+                    <li><a href="https://www.youtube.com/embed/af1VflMXKvI?start=854">4. Тестовая запись</a></li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <div class="item">
+                <h3>Программа записи с веб-камеры</h3>
+            </div>
+            <div class="item">
+                <p><a href="https://ispyfiles.azureedge.net/downloads/iSpy_7_2_1_0.zip">32 bit</a></p>
+                <p><a href="https://ispyfiles.azureedge.net/downloads/iSpy64_7_2_1_0.zip">64 bit</a></p>
+            </div>            
+        </div>
+    </div>
+    <script>
+        let listing = document.querySelector(".listing");
+        let listingVideo = document.querySelector(".video__listing");
+        let download = document.querySelector(".download");
+        let downloadVideo = document.querySelector(".video__download");
+        listing.addEventListener("click", function (e) {
+            e.preventDefault();
+            listingVideo.classList.toggle('active');
+            downloadVideo.classList.remove('active');
+        });
+        download.addEventListener("click", function (e) {
+            e.preventDefault();
+            downloadVideo.classList.toggle('active');
+            listingVideo.classList.remove('active');
+        });
+
+        let videoListingLinks = document.querySelectorAll(".video__listing a");
+        let iframeVideo = document.querySelector(".video iframe");
+        for (let index = 0; index < videoListingLinks.length; index++) {
+			const videoListingLink = videoListingLinks[index];
+			videoListingLink.addEventListener("click", function (e) {
+                let newLink = this.getAttribute('href');
+                iframeVideo.src = newLink;
+				e.preventDefault();
+			});
+		}
+        videoListingLink.addEventListener("click", function (e) {
+            e.preventDefault();
+            listingVideo.classList.toggle('active');
+            downloadVideo.classList.remove('active');
+        });
+    </script>
+</body>
+</html>
